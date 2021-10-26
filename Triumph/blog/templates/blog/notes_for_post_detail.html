@@ -1,0 +1,28 @@
+{% extends "blog/base.html" %}
+{% block content %}
+  <div class="content-section">
+        <div class="media">
+          <img class="rounded-circle article-img ml-50" src="{{ object.author.profile.image.url }}">
+          <div class="media-body">
+            <h2 class="account-heading">{{ object.author }}</h2>
+            <p class="text-secondary">{{ object.author.email }}</p>
+          </div>
+        </div>
+        <div>
+          <p>{{ object.author.profile.bio }}</p>
+
+          {% if object.author == user %}
+            <div>
+              <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'profile' %}">Profile</a>
+            </div>
+          {% else %}
+            <div>
+              <a class="btn btn-primary btn-sm mt-1 mb-1" href="#">Follow</a>
+              <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'user-posts' post.author.username %}">  All Posts  </a>
+            </div>
+          {% endif %}
+        </div>
+  </div>
+{% endblock content %}
+
+
